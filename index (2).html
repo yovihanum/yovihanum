@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun 🎂</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: white;
+            background:
+                radial-gradient(circle at top, #6292DE 15%, transparent 50%),
+                linear-gradient(135deg, #1a1033, #32145f, #701c52);
+        }
+
+        /* Bintang */
+        .stars {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from { opacity: .2; transform: scale(.7); }
+            to { opacity: 1; transform: scale(1.4); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 70px 20px;
+        }
+
+        .badge {
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.25);
+            padding: 8px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            font-size: 20px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: clamp(45px, 10vw, 90px);
+            line-height: 1;
+            background: linear-gradient(90deg, #fff, #ffd1e1, #ff7eb3);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 10px 30px rgba(255,100,180,.2);
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .subtitle {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 19px;
+            color: #fbddea;
+            max-width: 650px;
+        }
+
+        .cake {
+            font-size: 100px;
+            margin: 35px 0 20px;
+            animation: cake 2s infinite;
+            filter: drop-shadow(0 0 20px rgba(255,180,210,.5));
+        }
+
+        @keyframes cake {
+            0%,100% { transform: scale(1) rotate(-2deg); }
+            50% { transform: scale(1.08) rotate(2deg); }
+        }
+
+        /* Foto orang yang dituju */
+        .profile-photo {
+            width: 190px;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 10px 0 25px;
+            border: 5px solid rgba(255,255,255,.75);
+            box-shadow:
+                0 0 0 8px rgba(255,143,188,.15),
+                0 15px 45px rgba(0,0,0,.35),
+                0 0 35px rgba(255,126,179,.45);
+            animation: photoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes photoFloat {
+            0%,100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-7px) scale(1.02); }
+        }
+
+        .photo-caption {
+            margin-top: -10px;
+            margin-bottom: 15px;
+            font-size: 15px;
+            color: #ffe1ed;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            width: min(850px, 100%);
+            margin-top: 30px;
+            padding: 40px;
+            border-radius: 30px;
+            background: rgba(255,255,255,.10);
+            border: 1px solid rgba(255,255,255,.2);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 25px 70px rgba(0,0,0,.3);
+            text-align: center;
+        }
+
+        .typing {
+            min-height: 80px;
+            font-size: 22px;
+            line-height: 1.7;
+            color: #fff1f7;
+        }
+
+        .cursor {
+            animation: blink .7s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .divider {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff8fbc, transparent);
+            margin: 30px auto;
+        }
+
+        .quotes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            width: min(1000px, 100%);
+            margin-top: 35px;
+        }
+
+        .quote {
+            padding: 25px;
+            border-radius: 22px;
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.15);
+            backdrop-filter: blur(12px);
+            transition: .4s;
+        }
+
+        .quote:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,.14);
+            box-shadow: 0 15px 35px rgba(255,100,180,.18);
+        }
+
+        .quote span {
+            display: block;
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .quote p {
+            color: #f9dce9;
+            line-height: 1.7;
+        }
+
+        button {
+            margin-top: 35px;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff4f9a, #a855f7);
+            box-shadow: 0 10px 30px rgba(255,70,150,.3);
+            transition: .3s;
+        }
+
+        button:hover {
+            transform: scale(1.07);
+            box-shadow: 0 15px 40px rgba(255,70,150,.5);
+        }
+
+        footer {
+            margin-top: 50px;
+            color: #dcbccc;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* Hati */
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            font-size: 20px;
+            animation: rise linear forwards;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 0;
+            }
+            15% { opacity: 1; }
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            top: -20px;
+            width: 10px;
+            height: 15px;
+            z-index: 10;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+            }
+        }
+
+        @media(max-width:600px) {
+            .card {
+                padding: 25px 18px;
+            }
+
+            .typing {
+                font-size: 18px;
+            }
+
+            .cake {
+                font-size: 75px;
+            }
+
+            .profile-photo {
+                width: 145px;
+                height: 145px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="container">
+
+    <div class="badge">✨ A SPECIAL DAY ✨</div>
+
+    <h1>Happy Birthday!</h1>
+
+    <p class="subtitle">
+        Hari ini bukan sekadar bertambahnya usia,
+        tetapi bertambahnya cerita, pengalaman,
+        dan kesempatan untuk menjadi lebih hebat.
+    </p>
+
+       <img src="foto.jpg"
+         alt="Foto orang yang dituju"
+         class="profile-photo">
+
+    <div class="photo-caption">💖yovi & anggun 💖</div>
+
+    <div class="strawberry">🍓</div>
+
+    <div class="card">
+        <div class="typing" id="typing"></div>
+
+        <div class="divider"></div>
+
+        <p style="color:#fbddea; line-height:1.8;">
+            Semoga setiap langkahmu dipenuhi keberanian,
+            setiap harimu dipenuhi kebahagiaan,
+            dan setiap impianmu menemukan jalannya untuk menjadi nyata.
+        </p>
+
+        <button onclick="celebrate()">
+            🎉 Klik untuk Kejutan
+        </button>
+    </div>
+
+    <div class="quotes">
+
+        <div class="quote">
+            <span>🌷</span>
+            <p>
+                "Tidak perlu menjadi sempurna untuk menjadi luar biasa.
+                Cukup terus bertumbuh menjadi versi terbaik dari dirimu."
+            </p>
+        </div>
+
+        <div class="quote">
+            <span>🌙</span>
+            <p>
+                "Hidup bukan tentang seberapa cepat kita sampai,
+                tetapi tentang seberapa banyak keindahan yang kita temukan
+                sepanjang perjalanan."
+            </p>
+        </div>
+
+        <div class="quote">
+            <span>✨</span>
+            <p>
+                "Jangan takut bermimpi besar.
+                Dunia membutuhkan orang-orang yang berani percaya
+                bahwa sesuatu yang indah bisa terjadi."
+            </p>
+        </div>
+
+        <div class="quote">
+            <span>💖</span>
+            <p>
+                "Semoga usia baru membawa lebih banyak alasan untuk tersenyum,
+                lebih sedikit alasan untuk menyerah,
+                dan banyak hal yang layak disyukuri."
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        Dibuat dengan ❤️ untuk seseorang yang istimewa
+    </footer>
+
+</div>
+
+<script>
+
+    /* Membuat bintang secara otomatis */
+    const stars = document.getElementById("stars");
+
+    for(let i = 0; i < 100; i++){
+        const star = document.createElement("div");
+
+        star.className = "star";
+
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+
+        star.style.animationDelay = Math.random() * 3 + "s";
+
+        stars.appendChild(star);
+    }
+
+
+    /* Jika foto tidak ditemukan, tampilkan placeholder */
+    const profilePhoto = document.querySelector(".profile-photo");
+    profilePhoto.addEventListener("error", function(){
+        this.style.display = "none";
+        document.querySelector(".photo-caption").textContent =
+            "📷 Tambahkan file foto.jpg untuk menampilkan foto";
+    });
+
+    /* Efek tulisan */
+    const message =
+        "Selamat ulang tahun! 🎉 Semoga di usia yang baru ini, semua doa baik perlahan menemukan jalannya. Semoga kamu selalu dikelilingi orang-orang yang tulus, diberi kesehatan, kebahagiaan, dan keberanian untuk mengejar semua impianmu.";
+
+    const typing = document.getElementById("typing");
+
+    let index = 0;
+
+    function typeWriter(){
+
+        if(index < message.length){
+
+            typing.innerHTML =
+                message.substring(0,index + 1) +
+                '<span class="cursor">|</span>';
+
+            index++;
+
+            setTimeout(typeWriter, 45);
+
+        } else {
+
+            typing.innerHTML = message;
+        }
+    }
+
+    typeWriter();
+
+
+    /* Efek hati terbang */
+    function createHeart(){
+
+        const heart = document.createElement("div");
+
+        heart.className = "heart";
+
+        const hearts = ["🌸","💜","🫀","🍌","🍒","✨"];
+
+        heart.innerHTML =
+            hearts[Math.floor(Math.random() * hearts.length)];
+
+        heart.style.left = Math.random() * 100 + "%";
+
+        heart.style.animationDuration =
+            (4 + Math.random() * 5) + "s";
+
+        heart.style.fontSize =
+            (15 + Math.random() * 20) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 9000);
+    }
+
+    setInterval(createHeart, 700);
+
+
+    /* Tombol kejutan */
+    function celebrate(){
+
+        // Confetti
+        for(let i = 0; i < 120; i++){
+
+            const confetti = document.createElement("div");
+
+            confetti.className = "confetti";
+
+            const colors = [
+                "#ff4f9a",
+                "#ffd166",
+                "#06d6a0",
+                "#118ab2",
+                "#a855f7",
+                "#ffffff"
+            ];
+
+            confetti.style.background =
+                colors[Math.floor(Math.random() * colors.length)];
+
+            confetti.style.left =
+                Math.random() * 100 + "%";
+
+            confetti.style.animationDuration =
+                (2 + Math.random() * 3) + "s";
+
+            confetti.style.transform =
+                `rotate(${Math.random() * 360}deg)`;
+
+            document.body.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 5000);
+        }
+
+        alert("🎉 Selamat ulang tahun! Semoga semua impianmu menjadi kenyataan! ❤️");
+    }
+
+</script>
+
+</body>
+</html>
